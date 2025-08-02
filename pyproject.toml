@@ -1,6 +1,6 @@
 [project]
 name = "pydantic-alchemy"
-version = "0.1.0"
+version = "0.1.1"
 description = "A library to seamlessly integrate SQLAlchemy models with Pydantic. Useful for building fast, type-safe APIs and data pipelines."
 readme = "README.md"
 authors = [
@@ -20,6 +20,10 @@ classifiers = [
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+
+[project.urls]
+homepage = "https://github.com/eyueldk/pydantic-alchemy"
+repository = "https://github.com/eyueldk/pydantic-alchemy"
 
 [build-system]
 requires = ["hatchling"]
