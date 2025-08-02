@@ -1,10 +1,10 @@
 [project]
 name = "pydantic-alchemy"
-version = "0.1.1"
+version = "0.1.2"
 description = "A library to seamlessly integrate SQLAlchemy models with Pydantic. Useful for building fast, type-safe APIs and data pipelines."
 readme = "README.md"
 authors = [
-    { name = "eyueldk", email = "eyueldk@gmail.com" }
+    { name = "eyueldk" }
 ]
 requires-python = ">=3.9"
 dependencies = [
