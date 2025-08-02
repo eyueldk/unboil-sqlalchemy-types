@@ -1,0 +1,26 @@
+[project]
+name = "pydantic-alchemy"
+version = "0.1.0"
+description = "A library to seamlessly integrate SQLAlchemy models with Pydantic. Useful for building fast, type-safe APIs and data pipelines."
+readme = "README.md"
+authors = [
+    { name = "eyueldk", email = "eyueldk@gmail.com" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "sqlalchemy>=2.0.0",
+]
+
+keywords = ["pydantic", "sqlalchemy", "orm", "data validation", "api", "models"]
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
