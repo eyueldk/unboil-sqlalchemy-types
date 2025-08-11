@@ -2,7 +2,7 @@ from typing import Any
 
 from pydantic import TypeAdapter
 from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy import JSON, Dialect, TypeDecorator
+from sqlalchemy import Dialect, TypeDecorator
 
 
 class PydanticJSONB(TypeDecorator):

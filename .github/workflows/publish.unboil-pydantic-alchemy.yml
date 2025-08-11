@@ -1,4 +1,4 @@
-name: Publish PyWalker
+name: Publish package
 on:
   push:
     branches:
@@ -13,5 +13,5 @@ jobs:
     secrets: inherit
     with:
       environment-name: pypi
-      environment-url: https://pypi.org/p/pydantic-alchemy
+      environment-url: https://pypi.org/p/unboil-pydantic-sqlalchemy
 
