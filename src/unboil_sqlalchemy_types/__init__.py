@@ -1,15 +1,13 @@
 from typing import Any
 
 from pydantic import TypeAdapter
-from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy import Dialect, TypeDecorator
+from sqlalchemy import Dialect, TypeDecorator, JSON
 
 
-class PydanticJSONB(TypeDecorator):
+class PydanticJSON(TypeDecorator):
     
-    impl = JSONB
+    impl = JSON
     cache_ok = True  # Performance hint
-    __module__ = "sqlalchemy.dialects.postgresql" # for alembic
 
     def __init__(self, pydantic_type: type[Any]):
         super().__init__()
@@ -30,4 +28,4 @@ class PydanticJSONB(TypeDecorator):
         
     # for alembic
     def __repr__(self) -> str:
-        return f"JSONB()"
+        return f"JSON()"

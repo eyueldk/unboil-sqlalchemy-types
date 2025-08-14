@@ -1,24 +1,17 @@
 
-# Pydantic-Alchemy
+# unboil-sqlalchemy-types
 
-A SQLAlchemy type decorator for storing and retrieving Pydantic models in PostgreSQL JSONB columns.
-This library enables seamless integration between Pydantic and SQLAlchemy, allowing you to store validated data models directly in your database.
-
-## Features
-- Store Pydantic models in PostgreSQL JSONB columns
-- Automatic validation and serialization/deserialization
-- Works with Alembic migrations
 
 ## Installation
 ```bash
-pip install pydantic-alchemy
+pip install unboil-sqlalchemy-types
 ```
 
 ## Usage Example
 ```python
 from pydantic import BaseModel
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from pydantic_alchemy import PydanticJSONB
+from unboil_sqlalchemy_types import PydanticJSON
 
 
 class Base(DeclarativeBase):
@@ -28,11 +21,11 @@ class Profile(BaseModel):
     age: int
     bio: str
 
+Meta = str | int | dict
 
 class User(Base):
     __tablename__ = 'users'
     id: Mapped[int] = mapped_column(primary_key=True)
-    profile: Mapped[Profile] = mapped_column(PydanticJSONB(Profile))
-
-# Now, assigning a Profile instance to user.profile will automatically validate and serialize it.
+    profile: Mapped[Profile] = mapped_column(PydanticJSON(Profile))
+    meta: Mapped[Meta] = mapped_column(PydanticJSON(Meta))
 ```
