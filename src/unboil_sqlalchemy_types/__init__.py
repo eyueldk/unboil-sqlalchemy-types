@@ -1,6 +1,4 @@
 from typing import Any
-
-from pydantic import TypeAdapter
 from sqlalchemy import Dialect, TypeDecorator, JSON
 
 
@@ -10,6 +8,7 @@ class PydanticJSON(TypeDecorator):
     cache_ok = True  # Performance hint
 
     def __init__(self, pydantic_type: type[Any]):
+        from pydantic import TypeAdapter
         super().__init__()
         self.pydantic_type = pydantic_type
         self.adapter = TypeAdapter(pydantic_type)

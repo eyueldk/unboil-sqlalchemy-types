@@ -287,7 +287,7 @@ pydantic = [
 [package.metadata]
 requires-dist = [
     { name = "pydantic", specifier = ">=2.0.0" },
-    { name = "pydantic", marker = "extra == 'pydantic'", specifier = ">=2.11.7" },
+    { name = "pydantic", marker = "extra == 'pydantic'", specifier = ">=2.0.0" },
     { name = "sqlalchemy", specifier = ">=2.0.0" },
 ]
 provides-extras = ["pydantic"]
