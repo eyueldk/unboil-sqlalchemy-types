@@ -6,6 +6,7 @@ class PydanticJSON(TypeDecorator):
     
     impl = JSON
     cache_ok = True  # Performance hint
+    __module__ = "sa" # for alembic to do sa.JSON()
 
     def __init__(self, pydantic_type: type[Any]):
         from pydantic import TypeAdapter
