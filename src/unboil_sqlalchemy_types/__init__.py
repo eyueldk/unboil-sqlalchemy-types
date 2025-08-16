@@ -1,6 +1,20 @@
 from typing import Any
+from pydantic import ConfigDict, SecretStr
+from pydantic_core import PydanticSerializationError
 from sqlalchemy import Dialect, TypeDecorator, JSON
 
+__all__ = [
+    "PydanticJSON"
+]
+
+def serialize(obj: Any) -> Any:
+    if isinstance(obj, SecretStr):
+        return obj.get_secret_value()
+    elif isinstance(obj, dict):
+        return {k: serialize(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [serialize(v) for v in obj]
+    return obj
 
 class PydanticJSON(TypeDecorator):
     
@@ -16,9 +30,10 @@ class PydanticJSON(TypeDecorator):
 
     def process_bind_param(self, value: Any, dialect: Dialect):
         if isinstance(value, self.pydantic_type):
-            return self.adapter.dump_python(value)
+            dump = self.adapter.dump_python(value)
+            return serialize(dump)
         elif isinstance(value, dict):
-            return value  # Already a dict, possibly from a deserialized source
+            return serialize(value)  # Already a dict, possibly from a deserialized source
         raise TypeError(f"Expected {self.pydantic_type} or dict, got {type(value)}")
 
     def process_result_value(self, value: Any, dialect: Dialect):
