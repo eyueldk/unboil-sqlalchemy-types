@@ -29,12 +29,11 @@ class PydanticJSON(TypeDecorator):
         self.adapter = TypeAdapter(pydantic_type)
 
     def process_bind_param(self, value: Any, dialect: Dialect):
-        if isinstance(value, self.pydantic_type):
+        if isinstance(value, dict):
+            return serialize(value)  # Already a dict, possibly from a deserialized source
+        else:
             dump = self.adapter.dump_python(value)
             return serialize(dump)
-        elif isinstance(value, dict):
-            return serialize(value)  # Already a dict, possibly from a deserialized source
-        raise TypeError(f"Expected {self.pydantic_type} or dict, got {type(value)}")
 
     def process_result_value(self, value: Any, dialect: Dialect):
         if value is None:

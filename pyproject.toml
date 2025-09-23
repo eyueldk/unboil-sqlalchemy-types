@@ -1,6 +1,6 @@
 [project]
 name = "unboil-sqlalchemy-types"
-version = "0.1.6"
+version = "0.1.7"
 description = "A library to expand SQLAlchemy types."
 readme = "README.md"
 authors = [
